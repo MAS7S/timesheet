@@ -201,14 +201,16 @@ let D=null;
 try{if(window.claude&&claude.use)claude.use('downloads').then(d=>{D=d}).catch(()=>{})}catch(e){}
 async function dl(name,buf,type){
   if(D){await D.save({filename:name,data:buf});return}
+  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  if(ios&&navigator.canShare){const f=new File([buf],name,{type:type});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return}}
   const u=URL.createObjectURL(new Blob([buf],{type:type}));const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);
 }
 async function saveDoc(btn,ms,msg){
   const doc=buildPdf();if(!doc){flash(btn,'Could not save');return}
   try{await dl('Weekly_Schedule.pdf',doc.output('arraybuffer'),'application/pdf');flash(btn,msg||'Saved',ms)}
-  catch(e){if(e&&e.code==='declined')return;flash(btn,'Could not save')}
+  catch(e){if(e&&(e.code==='declined'||e.name==='AbortError'))return;flash(btn,'Could not save')}
 }
-$('bexp').onclick=async()=>{const b=$('bexp');try{await dl('Schedule_Backup.json',new TextEncoder().encode(JSON.stringify(S)).buffer,'application/json');flash(b,'Saved')}catch(e){if(e&&e.code==='declined')return;flash(b,'Could not save')}};
+$('bexp').onclick=async()=>{const b=$('bexp');try{await dl('Schedule_Backup.json',new TextEncoder().encode(JSON.stringify(S)).buffer,'application/json');flash(b,'Saved')}catch(e){if(e&&(e.code==='declined'||e.name==='AbortError'))return;flash(b,'Could not save')}};
 $('bimp').onclick=()=>$('fimp').click();
 $('fimp').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const b=$('bimp');try{const x=JSON.parse(await f.text());if(!sane(x))throw 0;S=x;norm(S);save();syncAll();flash(b,'Imported')}catch(err){flash(b,'Invalid file')}};
 $('bsave').onclick=()=>saveDoc($('bsave'));
