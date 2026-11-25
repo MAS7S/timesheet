@@ -3,245 +3,1493 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Weekly Work Schedule</title>
+<title>Weekly Work Schedule (iPhone / WhatsApp Edition)</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f8b8d">
 <style>
-:root{--bg:#eef4f7;--card:#fff;--tx:#1c2b33;--bd:#cfd9df;--wc:#0f8b8d;--wl:#d7efee;--wd:#094f51;--dn:#094f51;box-sizing:border-box}
-@media(prefers-color-scheme:dark){:root{--bg:#161b2e;--card:#232a45;--tx:#eef1fa;--bd:#3a4468;--dn:var(--wl)}}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Helvetica,sans-serif;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 16px)}
-.ban{background:linear-gradient(135deg,#0f8b8d,#2f6fdb);color:#fff;border-radius:0 0 22px 22px;padding:calc(env(safe-area-inset-top,0px) + 18px) 18px 18px;text-align:center}
-.bn{font-size:24px;font-weight:bold;word-break:break-word}.ba{font-size:14px;margin-top:4px;opacity:.95;word-break:break-word}.bt{font-size:12px;letter-spacing:1.5px;font-weight:bold;margin-top:10px;opacity:.9}
-main{padding:12px;max-width:640px;margin:0 auto}
-.card{background:var(--card);border-radius:16px;padding:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-label{display:block;font-size:12px;font-weight:bold;margin:8px 0 3px}
-label:first-child{margin-top:0}
-input{background:#fff;color:#1c2b33;border:1px solid #cfd9df;border-radius:8px;padding:8px;font:inherit;font-size:15px;width:100%;min-width:0;color-scheme:light}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
-.tab{flex:none;border:0;border-bottom:3px solid var(--c,#0f8b8d);background:var(--card);color:var(--tx);border-radius:12px;padding:9px 14px;font:bold 14px Arial;cursor:pointer;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tab.on{background:var(--c);color:#fff}.tab.add{border-bottom-color:var(--bd);opacity:.9}
-.r{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1fr) minmax(0,.7fr);gap:4px;align-items:center;margin-bottom:5px}
-.r input{padding:5px 3px;font-size:13px}
-.r input[type=time]{text-align:center}
-.hd{font-size:11px;font-weight:bold;text-align:center;color:var(--wd);background:var(--wl);border-radius:8px;padding:6px 2px;margin-bottom:6px}
-.dn{color:var(--dn);font-size:13px;min-height:15px}.dh{display:flex;align-items:center;justify-content:space-between;gap:3px;margin-bottom:2px}.off{border:1px solid var(--bd);background:transparent;color:var(--tx);border-radius:6px;font:bold 9px Arial;padding:2px 4px;cursor:pointer}.off.on{background:#e76f51;border-color:#e76f51;color:#fff}.offr input:not([type=date]){opacity:.45}
-.tot{background:var(--wc);color:#fff;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;font-weight:bold;margin-top:8px}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-button.b{border:0;border-radius:12px;padding:13px 6px;font:bold 14px Arial;color:#fff;cursor:pointer}
-#bn0{background:#0f8b8d}#bexp{background:#5f7f8f}#bimp{background:#8a6fd1}#bn2{background:#d6336c}#bn1{background:#e76f51}#bsave{background:#2f9e44}#bshare{background:#7b5ea7}#bprint{background:#2f6fdb}
-#rm{margin-top:10px;border:1px solid #d6336c;background:transparent;color:#d6336c;border-radius:10px;padding:8px 12px;font:bold 13px Arial;cursor:pointer}
-#rm:disabled{opacity:.4;cursor:default}
-.ck{display:flex;align-items:center;gap:6px;font-weight:normal;font-size:13px;margin:0}input[type=checkbox]{width:20px;height:20px;padding:0}
-#pv{display:none}
-@page{size:letter;margin:36pt}@media print{#app{display:none!important}#pv{display:block}body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  /* Theme Variables & Automatic Light/Dark Mode */
+  :root {
+    --bg: #eef4f7;
+    --card: #ffffff;
+    --tx: #1c2b33;
+    --mute: #5c707a;
+    --bd: #cfd9df;
+    --wc: #0f8b8d;
+    --wl: #d7efee;
+    --wd: #094f51;
+    --dn: #094f51;
+    box-sizing: border-box;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161b2e;
+      --card: #232a45;
+      --tx: #eef1fa;
+      --mute: #9aa5c4;
+      --bd: #3a4468;
+      --dn: var(--wl);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--tx);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Header Banner */
+  .ban {
+    background: linear-gradient(135deg, #0f8b8d, #2f6fdb);
+    color: #ffffff;
+    border-radius: 0 0 22px 22px;
+    padding: calc(env(safe-area-inset-top, 0px) + 18px) 18px 18px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(15, 139, 141, 0.2);
+  }
+
+  .ios-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(11, 15, 20, 0.55);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .ios-pill::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+  }
+
+  .bn {
+    font-size: 24px;
+    font-weight: 800;
+    word-break: break-word;
+  }
+
+  .ba {
+    font-size: 14px;
+    margin-top: 4px;
+    opacity: 0.95;
+    word-break: break-word;
+  }
+
+  .bt {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-top: 10px;
+    opacity: 0.9;
+  }
+
+  main {
+    padding: 12px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 13px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 8px 0 4px;
+  }
+
+  label:first-child {
+    margin-top: 0;
+  }
+
+  /* 16px font-size prevents iOS Safari auto-zoom on focus */
+  input,
+  textarea {
+    background: #ffffff;
+    color: #1c2b33;
+    border: 1px solid #cfd9df;
+    border-radius: 9px;
+    padding: 8px;
+    font: inherit;
+    font-size: 16px;
+    width: 100%;
+    min-width: 0;
+    color-scheme: light;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 2px solid var(--wc);
+    outline-offset: -1px;
+  }
+
+  /* Worker Tabs */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 2px 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    flex: none;
+    border: 0;
+    border-bottom: 3px solid var(--c, #0f8b8d);
+    background: var(--card);
+    color: var(--tx);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font: 700 14px -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    cursor: pointer;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tab.on {
+    background: var(--c);
+    color: #ffffff;
+  }
+
+  .tab.add {
+    border-bottom-color: var(--bd);
+    opacity: 0.92;
+  }
+
+  /* Schedule Grid */
+  .r {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.72fr);
+    gap: 5px;
+    align-items: end;
+    margin-bottom: 7px;
+  }
+
+  .r input {
+    padding: 7px 4px;
+    font-size: 16px;
+  }
+
+  .r input[type="time"] {
+    text-align: center;
+    padding: 7px 2px;
+  }
+
+  .r input[data-f="hours"] {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .hd {
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--wd);
+    background: var(--wl);
+    border-radius: 9px;
+    padding: 7px 2px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+
+  .dn {
+    color: var(--dn);
+    font-size: 13px;
+    min-height: 15px;
+  }
+
+  .dh {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  .off {
+    border: 1px solid var(--bd);
+    background: transparent;
+    color: var(--tx);
+    border-radius: 6px;
+    font: 700 10px Arial, sans-serif;
+    padding: 3px 6px;
+    cursor: pointer;
+  }
+
+  .off.on {
+    background: #e76f51;
+    border-color: #e76f51;
+    color: #ffffff;
+  }
+
+  .offr input:not([type="date"]) {
+    opacity: 0.45;
+  }
+
+  .tot {
+    background: var(--wc);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  /* Action Buttons */
+  .btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  button.b {
+    border: 0;
+    border-radius: 12px;
+    padding: 13px 8px;
+    font: 700 14px -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  button.b:active {
+    opacity: 0.85;
+  }
+
+  #bn0 {
+    background: #0f8b8d;
+  }
+
+  #bn2 {
+    background: #d6336c;
+  }
+
+  #bn1 {
+    background: #e76f51;
+  }
+
+  #bsave {
+    background: #2f9e44;
+  }
+
+  #bshare {
+    background: #7b5ea7;
+  }
+
+  #bprint {
+    background: #2f6fdb;
+  }
+
+  #bexp {
+    background: #5f7f8f;
+  }
+
+  #bimp {
+    background: #8a6fd1;
+  }
+
+  #rm {
+    margin-top: 10px;
+    border: 1px solid #d6336c;
+    background: transparent;
+    color: #d6336c;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font: 700 13px Arial, sans-serif;
+    cursor: pointer;
+  }
+
+  #rm:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .ck {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: normal;
+    font-size: 13px;
+    margin: 0;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
+
+  /* Custom Modals (Replaces alert/confirm + Report Ready Preview) */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 60;
+    backdrop-filter: blur(2px);
+  }
+
+  .modal.on {
+    display: flex;
+  }
+
+  .mbox {
+    background: var(--card);
+    color: var(--tx);
+    border: 1px solid var(--bd);
+    border-radius: 18px;
+    padding: 16px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .mbox h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+  }
+
+  .mbox p {
+    margin: 0 0 14px;
+    line-height: 1.5;
+    font-size: 15px;
+  }
+
+  .save-tip {
+    font-size: 13px;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #f59e0b66;
+    padding: 9px 11px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    line-height: 1.45;
+  }
+
+  #preview-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+    max-height: 54vh;
+    overflow-y: auto;
+    background: #d8e1e8;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  #preview-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    display: block;
+    -webkit-touch-callout: default;
+  }
+
+  .mbtns {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .mbtns .b {
+    flex: 1 1 120px;
+  }
+
+  /* Print View */
+  #pv {
+    display: none;
+  }
+
+  @page {
+    size: letter;
+    margin: 36pt;
+  }
+
+  @media print {
+    #app,
+    .modal {
+      display: none !important;
+    }
+    #pv {
+      display: block;
+    }
+    body {
+      background: #ffffff !important;
+      color: #000000 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
 </style>
 </head>
 <body>
+
 <div id="app">
-<header class="ban"><div id="bn" class="bn"></div><div id="ba" class="ba"></div><div class="bt">WEEKLY WORK SCHEDULE</div></header>
-<main>
-<section class="card">
-<label for="sn">Store name</label><input id="sn" placeholder="Store name">
-<label for="sa">Store address</label><input id="sa" placeholder="Store address">
-<div style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap"><label class="ck"><input type="checkbox" id="shn" checked> Show store name</label><label class="ck"><input type="checkbox" id="sha" checked> Show address</label></div>
-<label for="wk">Week starts</label><input id="wk" type="date">
-</section>
-<div class="tabs" id="tabs"></div>
-<section class="card">
-<label for="emp">Employee</label><input id="emp" placeholder="Employee name">
-<button id="rm" type="button">Remove worker</button>
-</section>
-<section class="card">
-<div class="r hd"><div>DAY / DATE</div><div>START</div><div>END</div><div>HOURS</div></div>
-<div id="rows"></div>
-<div class="tot"><span>TOTAL HOURS</span><span id="tot">0</span></div>
-</section>
-<div class="btns">
-<button class="b" id="bn0" type="button">Next week (keep times)</button>
-<button class="b" id="bn2" type="button">Clear times</button>
-<button class="b" id="bn1" type="button">Next week (clear times)</button>
-<button class="b" id="bsave" type="button">Save PDF</button>
-<button class="b" id="bshare" type="button">Share PDF</button>
-<button class="b" id="bprint" type="button">Print</button>
+  <!-- Header Banner -->
+  <header class="ban">
+    <div class="ios-pill">iPhone / WhatsApp Edition</div>
+    <div id="bn" class="bn"></div>
+    <div id="ba" class="ba"></div>
+    <div class="bt">WEEKLY WORK SCHEDULE</div>
+  </header>
+
+  <main>
+    <!-- Store Details & Week Start Card -->
+    <section class="card">
+      <label for="sn">Store name</label>
+      <input id="sn" placeholder="Store name" autocomplete="off">
+
+      <label for="sa">Store address</label>
+      <input id="sa" placeholder="Store address" autocomplete="off">
+
+      <div style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap">
+        <label class="ck"><input type="checkbox" id="shn" checked> Show store name</label>
+        <label class="ck"><input type="checkbox" id="sha" checked> Show address</label>
+      </div>
+
+      <label for="wk">Week starts</label>
+      <input id="wk" type="date">
+    </section>
+
+    <!-- Multi-Worker Color-Coded Tabs -->
+    <div class="tabs" id="tabs"></div>
+
+    <!-- Employee Name & Remove Worker Card -->
+    <section class="card">
+      <label for="emp">Employee</label>
+      <input id="emp" placeholder="Employee name" autocomplete="off">
+      <button id="rm" type="button">Remove worker</button>
+    </section>
+
+    <!-- 7-Day Work Schedule Table -->
+    <section class="card">
+      <div class="r hd">
+        <div>DAY / DATE</div>
+        <div>START</div>
+        <div>END</div>
+        <div>HOURS</div>
+      </div>
+      <div id="rows"></div>
+      <div class="tot">
+        <span>TOTAL HOURS</span>
+        <span id="tot">0:00</span>
+      </div>
+    </section>
+
+    <!-- Primary Actions Grid -->
+    <div class="btns">
+      <button class="b" id="bn0" type="button">Next week (keep times)</button>
+      <button class="b" id="bn2" type="button">Clear times</button>
+      <button class="b" id="bn1" type="button">Next week (clear times)</button>
+      <button class="b" id="bsave" type="button">Save Report (PDF / Image)</button>
+      <button class="b" id="bshare" type="button">Share Report</button>
+      <button class="b" id="bprint" type="button">Print</button>
+    </div>
+
+    <!-- Backup Controls -->
+    <div class="btns" style="margin-top:8px">
+      <button class="b" id="bexp" type="button">Export backup</button>
+      <button class="b" id="bimp" type="button">Import backup</button>
+    </div>
+
+    <div id="bkp" class="card" style="display:none;margin-top:8px">
+      <label for="bt">Backup text (JSON)</label>
+      <textarea id="bt" rows="4" style="font:13px monospace" placeholder="Paste backup JSON here..."></textarea>
+      <div class="btns" style="margin-top:8px">
+        <button class="b" id="bfile" type="button" style="background:#8a6fd1">Choose file</button>
+        <button class="b" id="bcopy" type="button" style="background:#5f7f8f">Copy backup text</button>
+        <button class="b" id="brest" type="button" style="background:#2f9e44;grid-column:1/-1">Restore from text</button>
+      </div>
+    </div>
+
+    <input type="file" id="fimp" accept=".json,application/json,text/plain" style="display:none">
+  </main>
 </div>
-<div class="btns" style="margin-top:8px"><button class="b" id="bexp" type="button">Export backup</button><button class="b" id="bimp" type="button">Import backup</button></div>
-<input type="file" id="fimp" accept=".json,application/json" style="display:none">
-</main>
-</div>
+
+<!-- Print Container -->
 <div id="pv"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Custom Notice / Confirmation Modal -->
+<div class="modal" id="cmodal">
+  <div class="mbox">
+    <p id="cmsg"></p>
+    <div class="mbtns">
+      <button class="b" id="cno" type="button" style="background:#6b7280">Cancel</button>
+      <button class="b" id="cyes" type="button" style="background:#0f8b8d">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Report Ready Preview Modal (Offline Canvas + Native Binary PDF for iPhone & WhatsApp) -->
+<div class="modal" id="rmodal">
+  <div class="mbox">
+    <h3>Schedule Report Ready</h3>
+    <div class="save-tip">
+      <b>On iPhone / WhatsApp:</b> Press and hold the schedule image below and tap <b>"Save to Photos"</b>, or use the Share / Download buttons below.
+    </div>
+    <div id="preview-box"></div>
+    <div class="mbtns">
+      <button class="b" id="dl-pdf" type="button" style="background:#2f9e44">Download PDF</button>
+      <button class="b" id="dl-img" type="button" style="background:#0f8b8d">Save Image</button>
+      <button class="b" id="dl-share" type="button" style="background:#7b5ea7">Share</button>
+      <button class="b" id="rclose" type="button" style="background:#6b7280">Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
-const $=id=>document.getElementById(id);
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const PAL=[['#0f8b8d','#d7efee','#094f51'],['#e76f51','#fce3db','#8f3a24'],['#7b5ea7','#e8def5','#4a3470'],['#2f6fdb','#dbe7fb','#1b4296'],['#d6336c','#fbdce8','#8a1f45'],['#2f9e44','#d8f0dd','#1c6029']];
-const pad=n=>String(n).padStart(2,'0');
-const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
-const parse=s=>{const p=String(s||'').split('-').map(Number);return p.length===3&&p[0]&&p[1]&&p[2]?new Date(p[0],p[1]-1,p[2]):null};
-const addD=(s,n)=>{const d=parse(s)||new Date();d.setDate(d.getDate()+n);return iso(d)};
-const dayName=s=>{const d=parse(s);return d?d.toLocaleDateString('en-US',{weekday:'long'}):''};
-const shortD=s=>{const d=parse(s);return d?d.toLocaleDateString('en-US',{month:'short',day:'numeric'}):''};
-const longD=s=>{const d=parse(s);return d?d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):''};
-const t12=t=>{if(!t)return'-';const a=t.split(':').map(Number);return((a[0]%12)||12)+':'+pad(a[1])+' '+(a[0]<12?'AM':'PM')};
-const calc=(s,e)=>{if(!s||!e)return'';const a=s.split(':').map(Number),b=e.split(':').map(Number);let m=b[0]*60+b[1]-a[0]*60-a[1];if(m<0)m+=1440;return Math.round(m/60*100)/100};
-const num=v=>{const n=parseFloat(v);return isFinite(n)?n:0};
-const total=w=>Math.round(w.days.reduce((a,d)=>a+num(d.hours),0)*100)/100;
-const wc=i=>PAL[i%6];
+(function() {
+  "use strict";
 
-function monday(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7));return iso(d)}
-function mkWorker(name,week){return{name:name,days:Array.from({length:7},(_,i)=>({date:addD(week,i),start:'',end:'',hours:'',off:false}))}}
-function defaults(){const w=monday();return{store:'',addr:'',week:w,sel:0,workers:[mkWorker('Worker 1',w),mkWorker('Worker 2',w)]}}
-function sane(s){
-  if(!s||typeof s!=='object'||!Array.isArray(s.workers)||!s.workers.length||!parse(s.week))return false;
-  return s.workers.every(w=>w&&typeof w.name==='string'&&Array.isArray(w.days)&&w.days.length===7&&w.days.every(d=>d&&typeof d.date==='string'&&typeof d.start==='string'&&typeof d.end==='string'));
-}
-let S;
-try{S=JSON.parse(localStorage.getItem('wsched'));}catch(e){S=null}
-if(!sane(S))S=defaults();
-S.store=String(S.store||'');S.addr=String(S.addr||'');S.showName=S.showName!==false;S.showAddr=S.showAddr!==false;
-S.sel=Math.min(Math.max(parseInt(S.sel)||0,0),S.workers.length-1);
-S.workers.forEach(w=>w.days.forEach(d=>{d.hours=d.hours===''||d.hours==null?'':String(d.hours);d.off=!!d.off}));
-function save(){try{localStorage.setItem('wsched',JSON.stringify(S))}catch(e){}}
+  var STORAGE_KEY = "wsched";
+  var memoryFallback = {};
 
-function norm(x){x.store=String(x.store||'');x.addr=String(x.addr||'');x.showName=x.showName!==false;x.showAddr=x.showAddr!==false;x.sel=Math.min(Math.max(parseInt(x.sel)||0,0),x.workers.length-1);x.workers.forEach(w=>w.days.forEach(d=>{d.hours=d.hours===''||d.hours==null?'':String(d.hours);d.off=!!d.off}))}
-function syncAll(){$('sn').value=S.store;$('sa').value=S.addr;$('wk').value=S.week;$('shn').checked=S.showName;$('sha').checked=S.showAddr;banner();render()}
-function banner(){$('bn').textContent=S.store||'Store name';$('ba').textContent=S.addr||'Store address';$('bn').style.display=S.showName?'':'none';$('ba').style.display=S.showAddr?'':'none'}
-function updTotal(){$('tot').textContent=total(S.workers[S.sel])}
-function render(){
-  const w=S.workers[S.sel],c=wc(S.sel),app=$('app');
-  app.style.setProperty('--wc',c[0]);app.style.setProperty('--wl',c[1]);app.style.setProperty('--wd',c[2]);
-  document.documentElement.style.setProperty('--wc',c[0]);document.documentElement.style.setProperty('--wl',c[1]);document.documentElement.style.setProperty('--wd',c[2]);
-  $('tabs').innerHTML=S.workers.map((x,i)=>'<button type="button" class="tab'+(i===S.sel?' on':'')+'" data-i="'+i+'" style="--c:'+wc(i)[0]+'">'+esc(x.name||'Worker '+(i+1))+'</button>').join('')+'<button type="button" class="tab add" id="add">+ Add worker</button>';
-  $('emp').value=w.name;
-  $('rows').innerHTML=w.days.map((d,j)=>'<div class="r'+(d.off?' offr':'')+'" id="r'+j+'"><div><div class="dh"><b class="dn" id="dn'+j+'">'+esc(dayName(d.date))+'</b><button type="button" class="off'+(d.off?' on':'')+'" data-off="'+j+'">OFF</button></div><input type="date" data-j="'+j+'" data-f="date" value="'+esc(d.date)+'"></div><input type="time" data-j="'+j+'" data-f="start" value="'+esc(d.start)+'"><input type="time" data-j="'+j+'" data-f="end" value="'+esc(d.end)+'"><input type="number" step="any" min="0" inputmode="decimal" id="h'+j+'" data-j="'+j+'" data-f="hours" value="'+esc(d.hours)+'"></div>').join('');
-  $('rm').disabled=S.workers.length<2;resetRm();updTotal();
-}
-$('shn').checked=S.showName;$('sha').checked=S.showAddr;
-$('shn').onchange=e=>{S.showName=e.target.checked;banner();save()};
-$('sha').onchange=e=>{S.showAddr=e.target.checked;banner();save()};
-$('sn').value=S.store;$('sa').value=S.addr;$('wk').value=S.week;
-$('sn').oninput=e=>{S.store=e.target.value;banner();save()};
-$('sa').oninput=e=>{S.addr=e.target.value;banner();save()};
-$('wk').onchange=e=>{if(!parse(e.target.value)){e.target.value=S.week;return}S.week=e.target.value;S.workers.forEach(w=>w.days.forEach((d,i)=>d.date=addD(S.week,i)));save();render()};
-$('emp').oninput=e=>{const w=S.workers[S.sel];w.name=e.target.value;const t=document.querySelector('.tab.on');if(t)t.textContent=w.name||'Worker '+(S.sel+1);save()};
-function rowEv(e){
-  const t=e.target,f=t.dataset.f;if(!f)return;
-  const j=+t.dataset.j,d=S.workers[S.sel].days[j];
-  d[f]=t.value;if(f!=='date'&&t.value!==''&&d.off){d.off=false;$('r'+j).classList.remove('offr');document.querySelector('[data-off="'+j+'"]').classList.remove('on')}
-  if(f==='date')$('dn'+j).textContent=dayName(t.value);
-  if(f==='start'||f==='end'){d.hours=String(calc(d.start,d.end));if(!d.start||!d.end)d.hours='';$('h'+j).value=d.hours}
-  updTotal();save();
-}
-$('rows').addEventListener('click',e=>{const b=e.target.closest('[data-off]');if(!b)return;const d=S.workers[S.sel].days[+b.dataset.off];d.off=!d.off;if(d.off){d.start='';d.end='';d.hours=''}save();render()});
-$('rows').addEventListener('input',rowEv);$('rows').addEventListener('change',rowEv);
-$('tabs').onclick=e=>{
-  const b=e.target.closest('button');if(!b)return;
-  if(b.id==='add'){S.workers.push(mkWorker('Worker '+(S.workers.length+1),S.week));S.sel=S.workers.length-1;save();render();const t=document.querySelector('.tab.on');if(t)t.scrollIntoView({inline:'center',block:'nearest'})}
-  else{S.sel=+b.dataset.i;save();render()}
-};
-function arm(btn,label,fn){
-  if(btn._t){clearTimeout(btn._t);btn._t=null;btn.textContent=label;fn();return}
-  btn.textContent='Tap again to confirm';
-  btn._t=setTimeout(()=>{btn._t=null;btn.textContent=label},4000);
-}
-function resetRm(){const b=$('rm');if(b._t){clearTimeout(b._t);b._t=null}b.textContent='Remove worker'}
-$('rm').onclick=()=>{if(S.workers.length<2)return;arm($('rm'),'Remove worker',()=>{S.workers.splice(S.sel,1);S.sel=Math.min(S.sel,S.workers.length-1);save();render()})};
-$('bn0').onclick=()=>arm($('bn0'),'Next week (keep times)',()=>{S.week=addD(S.week,7);$('wk').value=S.week;S.workers.forEach(w=>w.days.forEach(d=>{d.date=addD(d.date,7)}));save();render()});
-$('bn2').onclick=()=>arm($('bn2'),'Clear times',()=>{S.workers.forEach(w=>w.days.forEach(d=>{d.start='';d.end='';d.hours='';d.off=false}));save();render()});
-$('bn1').onclick=()=>arm($('bn1'),'Next week (clear times)',()=>{
-  S.week=addD(S.week,7);$('wk').value=S.week;
-  S.workers.forEach(w=>w.days.forEach(d=>{d.date=addD(d.date,7);d.start='';d.end='';d.hours='';d.off=false}));save();render();
-});
+  // Safe Storage Wrapper (prevents SecurityError in sandboxed webviews/iframes)
+  var safeStorage = {
+    get: function(k) {
+      try {
+        if (typeof window !== "undefined" && window.localStorage) {
+          return window.localStorage.getItem(k);
+        }
+      } catch (e) {}
+      return Object.prototype.hasOwnProperty.call(memoryFallback, k) ? memoryFallback[k] : null;
+    },
+    set: function(k, v) {
+      memoryFallback[k] = v;
+      try {
+        if (typeof window !== "undefined" && window.localStorage) {
+          window.localStorage.setItem(k, v);
+        }
+      } catch (e) {}
+    }
+  };
 
-function flash(btn,text,ms){
-  if(!btn.dataset.o)btn.dataset.o=btn.textContent;
-  btn.textContent=text;clearTimeout(btn._f);
-  btn._f=setTimeout(()=>{btn.textContent=btn.dataset.o},ms||2000);
-}
-function buildPdf(){
-  const J=window.jspdf&&window.jspdf.jsPDF;if(!J)return null;
-  const doc=new J({unit:'pt',format:'letter'});
-  const rgb=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16));
-  const fill=h=>doc.setFillColor.apply(doc,rgb(h)),txt=h=>doc.setTextColor.apply(doc,rgb(h));
-  const cut=(s,w)=>doc.splitTextToSize(String(s),w)[0]||'';
-  fill('#1f3a4d');doc.rect(0,0,612,84,'F');txt('#ffffff');
-  let by=32;txt('#ffffff');
-  if(S.showName){doc.setFont('helvetica','bold');doc.setFontSize(20);doc.text(cut(S.store||'Store name',540),36,by);by+=17}
-  if(S.showAddr){doc.setFont('helvetica','normal');doc.setFontSize(11);doc.text(cut(S.addr||'Store address',540),36,by);by+=17}
-  doc.setFont('helvetica','bold');doc.setFontSize(12);
-  doc.text('WEEKLY WORK SCHEDULE: '+longD(S.week)+' - '+longD(addD(S.week,6)),36,by+4);
-  const n=S.workers.length,k=Math.min(n,4),GAP=k>=4?10:12,BAR=k>=4?20:24,HD=k>=4?16:20,X=[36,306,396,486];
-  const rowH=Math.min(44,Math.floor(((792-100-36-(k-1)*GAP)/k-BAR*2-HD)/7)),H=BAR*2+HD+7*rowH;
-  const fs=Math.min(14,Math.max(9,Math.round(rowH*0.38)));
-  let y=100,cnt=0;
-  S.workers.forEach((w,i)=>{
-    const c=wc(i);
-    if(cnt===k){doc.addPage();y=36;cnt=0}
-    fill(c[0]);doc.rect(36,y,540,BAR,'F');txt('#ffffff');doc.setFont('helvetica','bold');doc.setFontSize(fs+2);
-    doc.text(cut('Employee: '+(w.name||'Worker '+(i+1)),520),44,y+BAR/2+(fs+2)*0.35);
-    fill(c[1]);doc.rect(36,y+BAR,540,HD,'F');txt(c[2]);doc.setFontSize(Math.min(fs,10));
-    ['DAY / DATE','START','END','HOURS'].forEach((h,m)=>doc.text(h,X[m]+8,y+BAR+HD/2+3.5));
-    doc.setDrawColor.apply(doc,rgb('#cfd9df'));
-    w.days.forEach((d,j)=>{
-      const ry=y+BAR+HD+j*rowH,ty=ry+rowH/2+fs*0.35;
-      txt(c[2]);doc.setFont('helvetica','bold');doc.setFontSize(fs);
-      doc.text(dayName(d.date)+', '+shortD(d.date),X[0]+8,ty);
-      txt('#222222');doc.setFont('helvetica','normal');
-      doc.text(d.off?'OFF':t12(d.start),X[1]+8,ty);doc.text(d.off?'OFF':t12(d.end),X[2]+8,ty);
-      doc.text(String(num(d.hours)),X[3]+8,ty);
-      doc.line(36,ry+rowH,576,ry+rowH);
+  var $ = function(id) {
+    return document.getElementById(id);
+  };
+
+  var esc = function(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
-    const ty0=y+BAR+HD+7*rowH;
-    fill(c[0]);doc.rect(36,ty0,540,BAR,'F');txt('#ffffff');doc.setFont('helvetica','bold');doc.setFontSize(fs+1);
-    doc.text('TOTAL HOURS',44,ty0+BAR/2+(fs+1)*0.35);doc.text(String(total(w)),568,ty0+BAR/2+(fs+1)*0.35,{align:'right'});
-    y+=H+GAP;cnt++;
+  };
+
+  // Custom Modal Helper (Never uses alert or confirm)
+  function showNotice(msg) {
+    $("cmsg").textContent = msg;
+    $("cno").style.display = "none";
+    var m = $("cmodal");
+    m.classList.add("on");
+    $("cyes").onclick = function() {
+      m.classList.remove("on");
+    };
+  }
+
+  // Worker Color Palette
+  var PAL = [
+    ["#0f8b8d", "#d7efee", "#094f51"],
+    ["#e76f51", "#fce3db", "#8f3a24"],
+    ["#7b5ea7", "#e8def5", "#4a3470"],
+    ["#2f6fdb", "#dbe7fb", "#1b4296"],
+    ["#d6336c", "#fbdce8", "#8a1f45"],
+    ["#2f9e44", "#d8f0dd", "#1c6029"]
+  ];
+
+  var pad = function(n) { return String(n).padStart(2, "0"); };
+  var iso = function(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); };
+  var parse = function(s) {
+    var p = String(s || "").split("-").map(Number);
+    return (p.length === 3 && p[0] && p[1] && p[2]) ? new Date(p[0], p[1] - 1, p[2]) : null;
+  };
+  var addD = function(s, n) {
+    var d = parse(s) || new Date();
+    d.setDate(d.getDate() + n);
+    return iso(d);
+  };
+  var dayName = function(s) {
+    var d = parse(s);
+    return d ? d.toLocaleDateString("en-US", { weekday: "long" }) : "";
+  };
+  var shortD = function(s) {
+    var d = parse(s);
+    return d ? d.toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "";
+  };
+  var longD = function(s) {
+    var d = parse(s);
+    return d ? d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
+  };
+  var t12 = function(t) {
+    if (!t) return "-";
+    var a = t.split(":").map(Number);
+    return ((a[0] % 12) || 12) + ":" + pad(a[1]) + " " + (a[0] < 12 ? "AM" : "PM");
+  };
+  var fmtMins = function(m) {
+    m = Math.max(0, Math.round(m || 0));
+    return Math.floor(m / 60) + ":" + pad(m % 60);
+  };
+  var toMins = function(v) {
+    if (v === "" || v == null) return 0;
+    var s = String(v).trim();
+    if (!s) return 0;
+    if (s.indexOf(":") !== -1) {
+      var p = s.split(":");
+      var h = parseInt(p[0], 10);
+      var mn = parseInt(p[1], 10);
+      if (!isFinite(h)) h = 0;
+      if (!isFinite(mn)) mn = 0;
+      return Math.max(0, h * 60 + mn);
+    }
+    var n = parseFloat(s);
+    return isFinite(n) ? Math.max(0, Math.round(n * 60)) : 0;
+  };
+  var fmtHoursVal = function(v) {
+    if (v === "" || v == null) return "0:00";
+    return fmtMins(toMins(v));
+  };
+  var calc = function(s, e) {
+    if (!s || !e) return "";
+    var a = s.split(":").map(Number);
+    var b = e.split(":").map(Number);
+    var m = b[0] * 60 + b[1] - a[0] * 60 - a[1];
+    if (m < 0) m += 1440;
+    return fmtMins(m);
+  };
+  var total = function(w) {
+    var m = w.days.reduce(function(a, d) { return a + toMins(d.hours); }, 0);
+    return fmtMins(m);
+  };
+  var wc = function(i) { return PAL[i % 6]; };
+
+  function monday() {
+    var d = new Date();
+    d.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+    return iso(d);
+  }
+
+  function mkWorker(name, week) {
+    return {
+      name: name,
+      days: Array.from({ length: 7 }, function(_, i) {
+        return { date: addD(week, i), start: "", end: "", hours: "", off: false };
+      })
+    };
+  }
+
+  function defaults() {
+    var w = monday();
+    return {
+      store: "",
+      addr: "",
+      week: w,
+      sel: 0,
+      workers: [mkWorker("Worker 1", w), mkWorker("Worker 2", w)]
+    };
+  }
+
+  function sane(s) {
+    if (!s || typeof s !== "object" || !Array.isArray(s.workers) || !s.workers.length || !parse(s.week)) {
+      return false;
+    }
+    return s.workers.every(function(w) {
+      return w && typeof w.name === "string" && Array.isArray(w.days) && w.days.length === 7 &&
+        w.days.every(function(d) {
+          return d && typeof d.date === "string" && typeof d.start === "string" && typeof d.end === "string";
+        });
+    });
+  }
+
+  // Load & Normalize State
+  var S = null;
+  try {
+    var raw = safeStorage.get(STORAGE_KEY);
+    if (raw) S = JSON.parse(raw);
+  } catch (e) {
+    S = null;
+  }
+
+  if (!sane(S)) S = defaults();
+
+  function norm(x) {
+    x.store = String(x.store || "");
+    x.addr = String(x.addr || "");
+    x.showName = x.showName !== false;
+    x.showAddr = x.showAddr !== false;
+    x.sel = Math.min(Math.max(parseInt(x.sel, 10) || 0, 0), x.workers.length - 1);
+    x.workers.forEach(function(w) {
+      w.days.forEach(function(d) {
+        d.off = !!d.off;
+        if (d.off) {
+          d.hours = "";
+        } else if (d.start && d.end && (d.hours === "" || d.hours == null || String(d.hours).indexOf(":") === -1)) {
+          d.hours = calc(d.start, d.end);
+        } else if (d.hours === "" || d.hours == null) {
+          d.hours = "";
+        } else {
+          var hs = String(d.hours).trim();
+          d.hours = hs.indexOf(":") !== -1 ? hs : fmtMins(toMins(hs));
+        }
+      });
+    });
+  }
+
+  norm(S);
+
+  function save() {
+    safeStorage.set(STORAGE_KEY, JSON.stringify(S));
+  }
+
+  function banner() {
+    $("bn").textContent = S.store || "Store name";
+    $("ba").textContent = S.addr || "Store address";
+    $("bn").style.display = S.showName ? "" : "none";
+    $("ba").style.display = S.showAddr ? "" : "none";
+  }
+
+  function updTotal() {
+    $("tot").textContent = total(S.workers[S.sel]);
+  }
+
+  function render() {
+    var w = S.workers[S.sel];
+    var c = wc(S.sel);
+    var app = $("app");
+
+    app.style.setProperty("--wc", c[0]);
+    app.style.setProperty("--wl", c[1]);
+    app.style.setProperty("--wd", c[2]);
+    document.documentElement.style.setProperty("--wc", c[0]);
+    document.documentElement.style.setProperty("--wl", c[1]);
+    document.documentElement.style.setProperty("--wd", c[2]);
+
+    $("tabs").innerHTML = S.workers.map(function(x, i) {
+      return '<button type="button" class="tab' + (i === S.sel ? " on" : "") + '" data-i="' + i + '" style="--c:' + wc(i)[0] + '">' +
+        esc(x.name || "Worker " + (i + 1)) + "</button>";
+    }).join("") + '<button type="button" class="tab add" id="add">+ Add worker</button>';
+
+    $("emp").value = w.name;
+
+    $("rows").innerHTML = w.days.map(function(d, j) {
+      return '<div class="r' + (d.off ? " offr" : "") + '" id="r' + j + '">' +
+        '<div>' +
+          '<div class="dh">' +
+            '<b class="dn" id="dn' + j + '">' + esc(dayName(d.date)) + '</b>' +
+            '<button type="button" class="off' + (d.off ? " on" : "") + '" data-off="' + j + '">OFF</button>' +
+          '</div>' +
+          '<input type="date" data-j="' + j + '" data-f="date" value="' + esc(d.date) + '">' +
+        '</div>' +
+        '<input type="time" data-j="' + j + '" data-f="start" value="' + esc(d.start) + '">' +
+        '<input type="time" data-j="' + j + '" data-f="end" value="' + esc(d.end) + '">' +
+        '<input type="text" inputmode="text" placeholder="0:00" id="h' + j + '" data-j="' + j + '" data-f="hours" value="' + esc(d.hours) + '">' +
+      '</div>';
+    }).join("");
+
+    $("rm").disabled = S.workers.length < 2;
+    resetRm();
+    updTotal();
+  }
+
+  function syncAll() {
+    $("sn").value = S.store;
+    $("sa").value = S.addr;
+    $("wk").value = S.week;
+    $("shn").checked = S.showName;
+    $("sha").checked = S.showAddr;
+    banner();
+    render();
+  }
+
+  // Event Listeners for Store & Week Controls
+  $("shn").checked = S.showName;
+  $("sha").checked = S.showAddr;
+  $("shn").onchange = function(e) { S.showName = e.target.checked; banner(); save(); };
+  $("sha").onchange = function(e) { S.showAddr = e.target.checked; banner(); save(); };
+
+  $("sn").value = S.store;
+  $("sa").value = S.addr;
+  $("wk").value = S.week;
+
+  $("sn").oninput = function(e) { S.store = e.target.value; banner(); save(); };
+  $("sa").oninput = function(e) { S.addr = e.target.value; banner(); save(); };
+
+  $("wk").onchange = function(e) {
+    if (!parse(e.target.value)) {
+      e.target.value = S.week;
+      return;
+    }
+    S.week = e.target.value;
+    S.workers.forEach(function(w) {
+      w.days.forEach(function(d, i) {
+        d.date = addD(S.week, i);
+      });
+    });
+    save();
+    render();
+  };
+
+  $("emp").oninput = function(e) {
+    var w = S.workers[S.sel];
+    w.name = e.target.value;
+    var t = document.querySelector(".tab.on");
+    if (t) t.textContent = w.name || "Worker " + (S.sel + 1);
+    save();
+  };
+
+  // Schedule Row Events
+  function rowEv(e) {
+    var t = e.target;
+    var f = t.dataset.f;
+    if (!f) return;
+
+    var j = +t.dataset.j;
+    var d = S.workers[S.sel].days[j];
+    d[f] = t.value;
+
+    if (f !== "date" && t.value !== "" && d.off) {
+      d.off = false;
+      $("r" + j).classList.remove("offr");
+      var offBtn = document.querySelector('[data-off="' + j + '"]');
+      if (offBtn) offBtn.classList.remove("on");
+    }
+
+    if (f === "date") {
+      $("dn" + j).textContent = dayName(t.value);
+    }
+
+    if (f === "start" || f === "end") {
+      d.hours = String(calc(d.start, d.end));
+      if (!d.start || !d.end) d.hours = "";
+      $("h" + j).value = d.hours;
+    }
+
+    updTotal();
+    save();
+  }
+
+  $("rows").addEventListener("click", function(e) {
+    var b = e.target.closest("[data-off]");
+    if (!b) return;
+    var d = S.workers[S.sel].days[+b.dataset.off];
+    d.off = !d.off;
+    if (d.off) {
+      d.start = "";
+      d.end = "";
+      d.hours = "";
+    }
+    save();
+    render();
   });
-  return doc;
-}
-let D=null;
-try{if(window.claude&&claude.use)claude.use('downloads').then(d=>{D=d}).catch(()=>{})}catch(e){}
-async function dl(name,buf,type){
-  if(D){await D.save({filename:name,data:buf});return}
-  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-  if(ios&&navigator.canShare){const f=new File([buf],name,{type:type});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return}}
-  const u=URL.createObjectURL(new Blob([buf],{type:type}));const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);
-}
-async function saveDoc(btn,ms,msg){
-  const doc=buildPdf();if(!doc){flash(btn,'Could not save');return}
-  try{await dl('Weekly_Schedule.pdf',doc.output('arraybuffer'),'application/pdf');flash(btn,msg||'Saved',ms)}
-  catch(e){if(e&&(e.code==='declined'||e.name==='AbortError'))return;flash(btn,'Could not save')}
-}
-$('bexp').onclick=async()=>{const b=$('bexp');try{await dl('Schedule_Backup.json',new TextEncoder().encode(JSON.stringify(S)).buffer,'application/json');flash(b,'Saved')}catch(e){if(e&&(e.code==='declined'||e.name==='AbortError'))return;flash(b,'Could not save')}};
-$('bimp').onclick=()=>$('fimp').click();
-$('fimp').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const b=$('bimp');try{const x=JSON.parse(await f.text());if(!sane(x))throw 0;S=x;norm(S);save();syncAll();flash(b,'Imported')}catch(err){flash(b,'Invalid file')}};
-$('bsave').onclick=()=>saveDoc($('bsave'));
-$('bshare').onclick=async()=>{
-  const btn=$('bshare'),doc=buildPdf();if(!doc){flash(btn,'Could not share');return}
-  try{
-    const file=new File([doc.output('arraybuffer')],'Weekly_Schedule.pdf',{type:'application/pdf'});
-    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Weekly Work Schedule'});return}
-  }catch(e){if(e&&e.name==='AbortError')return}
-  saveDoc(btn);
-};
-function printView(){
-  const n=S.workers.length,k=Math.min(n,4),GAP=k>=4?10:12,BAR=k>=4?20:24,HD=k>=4?16:20;
-  const rowH=Math.min(44,Math.floor(((630-(k-1)*GAP)/k-BAR*2-HD)/7)),fs=Math.min(14,Math.max(9,Math.round(rowH*0.38)));
-  const tbl=(w,i)=>{const c=wc(i);return '<table style="width:100%;table-layout:fixed;border-collapse:collapse;margin-bottom:'+GAP+'pt;font-size:'+fs+'pt"><colgroup><col style="width:50%"><col style="width:16.7%"><col style="width:16.7%"><col style="width:16.6%"></colgroup>'+
-  '<tr style="height:'+BAR+'pt"><td colspan="4" style="background:'+c[0]+';color:#fff;font-weight:bold;font-size:'+(fs+2)+'pt">Employee: '+esc(w.name||'Worker '+(i+1))+'</td></tr>'+
-  '<tr style="height:'+HD+'pt;background:'+c[1]+';color:'+c[2]+';font-weight:bold;font-size:'+Math.min(fs,10)+'pt"><td>DAY / DATE</td><td>START</td><td>END</td><td>HOURS</td></tr>'+
-  w.days.map(d=>'<tr style="height:'+rowH+'pt;border-bottom:1px solid #cfd9df"><td style="font-weight:bold;color:'+c[2]+'">'+esc(dayName(d.date)+', '+shortD(d.date))+'</td><td>'+(d.off?'OFF':esc(t12(d.start)))+'</td><td>'+(d.off?'OFF':esc(t12(d.end)))+'</td><td>'+num(d.hours)+'</td></tr>').join('')+
-  '<tr style="height:'+BAR+'pt;background:'+c[0]+';color:#fff;font-weight:bold;font-size:'+(fs+1)+'pt"><td colspan="3">TOTAL HOURS</td><td>'+total(w)+'</td></tr></table>'};
-  let groups='';
-  for(let a=0;a<n;a+=k){groups+='<div'+(a+k<n?' style="page-break-after:always;break-after:page"':'')+'>'+S.workers.slice(a,a+k).map((w,m)=>tbl(w,a+m)).join('')+'</div>'}
-  $('pv').innerHTML='<style>#pv td{padding:0 8px}</style><div style="font-family:Arial;color:#000;background:#fff"><div style="background:#1f3a4d;color:#fff;padding:14px;border-radius:0 0 14px 14px;margin-bottom:12px">'+(S.showName?'<div style="font-size:22px;font-weight:bold">'+esc(S.store||'Store name')+'</div>':'')+(S.showAddr?'<div>'+esc(S.addr||'Store address')+'</div>':'')+'<div style="font-weight:bold;margin-top:6px">WEEKLY WORK SCHEDULE: '+esc(longD(S.week))+' - '+esc(longD(addD(S.week,6)))+'</div></div>'+groups+'</div>';
-}
-$('bprint').onclick=()=>{
-  let fired=false;const h=()=>{fired=true};
-  window.addEventListener('beforeprint',h,{once:true});
-  printView();
-  try{window.print()}catch(e){}
-  setTimeout(()=>{window.removeEventListener('beforeprint',h);if(!fired)saveDoc($('bprint'),5000,'Open the PDF, tap Print')},700);
-};
-banner();render();
+
+  $("rows").addEventListener("input", rowEv);
+  $("rows").addEventListener("change", rowEv);
+
+  // Worker Tabs & Double-Tap Confirmation Helpers
+  $("tabs").onclick = function(e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    if (b.id === "add") {
+      S.workers.push(mkWorker("Worker " + (S.workers.length + 1), S.week));
+      S.sel = S.workers.length - 1;
+      save();
+      render();
+      var t = document.querySelector(".tab.on");
+      if (t) t.scrollIntoView({ inline: "center", block: "nearest" });
+    } else {
+      S.sel = +b.dataset.i;
+      save();
+      render();
+    }
+  };
+
+  function arm(btn, label, fn) {
+    if (btn._t) {
+      clearTimeout(btn._t);
+      btn._t = null;
+      btn.textContent = label;
+      fn();
+      return;
+    }
+    btn.textContent = "Tap again to confirm";
+    btn._t = setTimeout(function() {
+      btn._t = null;
+      btn.textContent = label;
+    }, 4000);
+  }
+
+  function resetRm() {
+    var b = $("rm");
+    if (b._t) {
+      clearTimeout(b._t);
+      b._t = null;
+    }
+    b.textContent = "Remove worker";
+  }
+
+  $("rm").onclick = function() {
+    if (S.workers.length < 2) return;
+    arm($("rm"), "Remove worker", function() {
+      S.workers.splice(S.sel, 1);
+      S.sel = Math.min(S.sel, S.workers.length - 1);
+      save();
+      render();
+    });
+  };
+
+  $("bn0").onclick = function() {
+    arm($("bn0"), "Next week (keep times)", function() {
+      S.week = addD(S.week, 7);
+      $("wk").value = S.week;
+      S.workers.forEach(function(w) {
+        w.days.forEach(function(d) {
+          d.date = addD(d.date, 7);
+        });
+      });
+      save();
+      render();
+    });
+  };
+
+  $("bn2").onclick = function() {
+    arm($("bn2"), "Clear times", function() {
+      S.workers.forEach(function(w) {
+        w.days.forEach(function(d) {
+          d.start = "";
+          d.end = "";
+          d.hours = "";
+          d.off = false;
+        });
+      });
+      save();
+      render();
+    });
+  };
+
+  $("bn1").onclick = function() {
+    arm($("bn1"), "Next week (clear times)", function() {
+      S.week = addD(S.week, 7);
+      $("wk").value = S.week;
+      S.workers.forEach(function(w) {
+        w.days.forEach(function(d) {
+          d.date = addD(d.date, 7);
+          d.start = "";
+          d.end = "";
+          d.hours = "";
+          d.off = false;
+        });
+      });
+      save();
+      render();
+    });
+  };
+
+  function flash(btn, text, ms) {
+    if (!btn.dataset.o) btn.dataset.o = btn.textContent;
+    btn.textContent = text;
+    clearTimeout(btn._f);
+    btn._f = setTimeout(function() {
+      btn.textContent = btn.dataset.o;
+    }, ms || 2200);
+  }
+
+  // =========================================================================
+  // 100% OFFLINE MULTI-PAGE CANVAS + NATIVE BINARY PDF GENERATOR (NO CDN)
+  // =========================================================================
+  var PW = 1275, PH = 1650; // 8.5 x 11 in at 150 DPI
+
+  function renderSchedulePages() {
+    var pages = [];
+    var c, x;
+
+    function newPage(isFirst) {
+      c = document.createElement("canvas");
+      c.width = PW;
+      c.height = PH;
+      x = c.getContext("2d");
+      x.fillStyle = "#ffffff";
+      x.fillRect(0, 0, PW, PH);
+      pages.push(c);
+
+      if (isFirst) {
+        // Top Store Banner
+        x.fillStyle = "#1f3a4d";
+        x.fillRect(0, 0, PW, 175);
+
+        var by = 62;
+        x.fillStyle = "#ffffff";
+        x.textAlign = "left";
+        x.direction = "ltr";
+
+        if (S.showName) {
+          var sName = S.store || "Store name";
+          x.direction = /[\u0600-\u06FF]/.test(sName) ? "rtl" : "ltr";
+          x.font = "bold 40px Arial, Tahoma, sans-serif";
+          x.fillText(sName, /[\u0600-\u06FF]/.test(sName) ? PW - 75 : 75, by, 1125);
+          by += 36;
+        }
+        if (S.showAddr) {
+          var sAddr = S.addr || "Store address";
+          x.direction = /[\u0600-\u06FF]/.test(sAddr) ? "rtl" : "ltr";
+          x.font = "22px Arial, Tahoma, sans-serif";
+          x.fillStyle = "#dbeafe";
+          x.fillText(sAddr, /[\u0600-\u06FF]/.test(sAddr) ? PW - 75 : 75, by, 1125);
+          by += 36;
+        }
+
+        x.direction = "ltr";
+        x.fillStyle = "#ffffff";
+        x.font = "bold 24px Arial, Tahoma, sans-serif";
+        x.fillText("WEEKLY WORK SCHEDULE: " + longD(S.week) + " – " + longD(addD(S.week, 6)), 75, by + 10, 1125);
+        return 205;
+      }
+      return 75;
+    }
+
+    var n = S.workers.length;
+    var k = Math.min(n, 4); // Up to 4 workers per page cleanly
+    var GAP = k >= 4 ? 20 : 26;
+    var BAR = k >= 4 ? 42 : 48;
+    var HD = k >= 4 ? 34 : 40;
+    var usableH = PH - 205 - 65 - (k - 1) * GAP;
+    var rowH = Math.min(86, Math.floor((usableH / k - BAR * 2 - HD) / 7));
+    var blockH = BAR * 2 + HD + 7 * rowH;
+    var fs = Math.min(26, Math.max(19, Math.round(rowH * 0.42)));
+
+    var y = newPage(true);
+    var cnt = 0;
+
+    // Column X offsets inside 1125px table (x=75 to x=1200)
+    var X0 = 75, W = 1125;
+    var COL = [95, 635, 825, 1015];
+
+    S.workers.forEach(function(w, i) {
+      if (cnt === k) {
+        y = newPage(false);
+        cnt = 0;
+      }
+
+      var col = wc(i);
+
+      // Worker Top Header Bar
+      x.fillStyle = col[0];
+      x.fillRect(X0, y, W, BAR);
+      var empLabel = "Employee: " + (w.name || "Worker " + (i + 1));
+      x.direction = /[\u0600-\u06FF]/.test(empLabel) ? "rtl" : "ltr";
+      x.fillStyle = "#ffffff";
+      x.font = "bold " + (fs + 3) + "px Arial, Tahoma, sans-serif";
+      x.textAlign = "left";
+      x.fillText(empLabel, /[\u0600-\u06FF]/.test(empLabel) ? X0 + W - 20 : COL[0], y + BAR / 2 + (fs + 3) * 0.34, W - 40);
+
+      // Table Column Header Row
+      x.direction = "ltr";
+      x.fillStyle = col[1];
+      x.fillRect(X0, y + BAR, W, HD);
+      x.fillStyle = col[2];
+      x.font = "bold " + Math.min(fs, 20) + "px Arial, Tahoma, sans-serif";
+      var hdrs = ["DAY / DATE", "START", "END", "HOURS"];
+      hdrs.forEach(function(h, idx) {
+        x.fillText(h, COL[idx], y + BAR + HD / 2 + 7);
+      });
+
+      // 7 Day Rows
+      x.strokeStyle = "#cfd9df";
+      x.lineWidth = 1.5;
+
+      w.days.forEach(function(d, j) {
+        var ry = y + BAR + HD + j * rowH;
+        var ty = ry + rowH / 2 + fs * 0.34;
+
+        if (j % 2 === 1) {
+          x.fillStyle = "#f8fafc";
+          x.fillRect(X0, ry, W, rowH);
+        }
+
+        // Day & Date
+        x.fillStyle = col[2];
+        x.font = "bold " + fs + "px Arial, Tahoma, sans-serif";
+        x.fillText(dayName(d.date) + ", " + shortD(d.date), COL[0], ty, 520);
+
+        // Start, End, Hours
+        x.fillStyle = d.off ? "#d6336c" : "#1f2937";
+        x.font = (d.off ? "bold " : "") + fs + "px Arial, Tahoma, sans-serif";
+        x.fillText(d.off ? "OFF" : t12(d.start), COL[1], ty);
+        x.fillText(d.off ? "OFF" : t12(d.end), COL[2], ty);
+
+        x.fillStyle = "#111827";
+        x.font = "bold " + fs + "px Arial, Tahoma, sans-serif";
+        x.fillText(d.off ? "0:00" : fmtHoursVal(d.hours), COL[3], ty);
+
+        x.beginPath();
+        x.moveTo(X0, ry + rowH);
+        x.lineTo(X0 + W, ry + rowH);
+        x.stroke();
+      });
+
+      // Worker Total Hours Footer Bar
+      var ty0 = y + BAR + HD + 7 * rowH;
+      x.fillStyle = col[0];
+      x.fillRect(X0, ty0, W, BAR);
+      x.fillStyle = "#ffffff";
+      x.font = "bold " + (fs + 2) + "px Arial, Tahoma, sans-serif";
+      x.textAlign = "left";
+      x.fillText("TOTAL HOURS", COL[0], ty0 + BAR / 2 + (fs + 2) * 0.34);
+      x.textAlign = "right";
+      x.fillText(String(total(w)), X0 + W - 22, ty0 + BAR / 2 + (fs + 2) * 0.34);
+      x.textAlign = "left";
+
+      y += blockH + GAP;
+      cnt++;
+    });
+
+    return pages;
+  }
+
+  function buildBinaryPdf(pages) {
+    var enc = new TextEncoder();
+    var parts = [];
+    var off = 0;
+    var xr = [];
+    var n = pages.length;
+
+    function add(b) {
+      if (typeof b === "string") b = enc.encode(b);
+      parts.push(b);
+      off += b.length;
+    }
+
+    function obj(id, body) {
+      xr[id] = off;
+      add(id + " 0 obj\n" + body + "\nendobj\n");
+    }
+
+    add("%PDF-1.4\n%\u00e2\u00e3\u00cf\u00d3\n");
+    var kids = [];
+    for (var i = 0; i < n; i++) kids.push((3 + 3 * i) + " 0 R");
+    obj(1, "<< /Type /Catalog /Pages 2 0 R >>");
+    var infoId = 3 * n + 3;
+    obj(2, "<< /Type /Pages /Kids [" + kids.join(" ") + "] /Count " + n + " >>");
+
+    pages.forEach(function(c, i) {
+      var pg = 3 + 3 * i, ct = pg + 1, im = pg + 2;
+      var bin = atob(c.toDataURL("image/jpeg", 0.92).split(",")[1]);
+      var u = new Uint8Array(bin.length);
+      for (var j = 0; j < bin.length; j++) u[j] = bin.charCodeAt(j);
+
+      obj(pg, "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /XObject << /Im0 " + im + " 0 R >> >> /Contents " + ct + " 0 R >>");
+      var cs = "q 612 0 0 792 0 0 cm /Im0 Do Q";
+      obj(ct, "<< /Length " + cs.length + " >>\nstream\n" + cs + "\nendstream");
+      xr[im] = off;
+      add(im + " 0 obj\n<< /Type /XObject /Subtype /Image /Width " + PW + " /Height " + PH + " /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length " + u.length + " >>\nstream\n");
+      add(u);
+      add("\nendstream\nendobj\n");
+    });
+
+    obj(infoId, "<< /Title (Weekly Work Schedule) /Producer (Weekly Schedule Tracker) >>");
+    var N = 3 * n + 4, xo = off, t = "xref\n0 " + N + "\n0000000000 65535 f \n";
+    for (var k = 1; k < N; k++) t += String(xr[k]).padStart(10, "0") + " 00000 n \n";
+    add(t + "trailer\n<< /Size " + N + " /Root 1 0 R /Info " + infoId + " 0 R >>\nstartxref\n" + xo + "\n%%EOF");
+
+    return new Blob(parts, { type: "application/pdf" });
+  }
+
+  function mergePagesToSingleCanvas(pages) {
+    if (pages.length === 1) return pages[0];
+    var big = document.createElement("canvas");
+    big.width = PW;
+    big.height = PH * pages.length;
+    var ctx = big.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, big.width, big.height);
+    pages.forEach(function(p, idx) {
+      ctx.drawImage(p, 0, idx * PH);
+    });
+    return big;
+  }
+
+  // =========================================================================
+  // REPORT READY PREVIEW MODAL & IPHONE / WHATSAPP EXPORT HANDLERS
+  // =========================================================================
+  var lastPages = [];
+
+  function openReportPreview() {
+    try {
+      lastPages = renderSchedulePages();
+      var box = $("preview-box");
+      box.innerHTML = "";
+      lastPages.forEach(function(c, idx) {
+        var img = document.createElement("img");
+        img.src = c.toDataURL("image/jpeg", 0.95);
+        img.alt = "Weekly Work Schedule Page " + (idx + 1);
+        box.appendChild(img);
+      });
+      $("rmodal").classList.add("on");
+    } catch (err) {
+      showNotice("Could not generate schedule report. Please try again.");
+    }
+  }
+
+  function fallbackSaveOrOpen(blob, fn) {
+    var u = URL.createObjectURL(blob);
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      var w = window.open(u, "_blank");
+      if (!w) {
+        showNotice('Press and hold the schedule image above and tap "Save to Photos".');
+      }
+    } else {
+      var a = document.createElement("a");
+      a.href = u;
+      a.download = fn;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    setTimeout(function() {
+      URL.revokeObjectURL(u);
+    }, 60000);
+  }
+
+  function exportPdfFile(preferShare) {
+    try {
+      if (!lastPages.length) lastPages = renderSchedulePages();
+      var blob = buildBinaryPdf(lastPages);
+      var fn = (S.store ? S.store.replace(/[^\w\u0600-\u06FF\- ]/g, "").trim().replace(/\s+/g, "-") + "-" : "") +
+        "Weekly_Schedule_" + S.week + ".pdf";
+      var file = new File([blob], fn, { type: "application/pdf" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: "Weekly Work Schedule" }).catch(function(err) {
+          if (err && err.name !== "AbortError") {
+            fallbackSaveOrOpen(blob, fn);
+          }
+        });
+        return;
+      }
+      fallbackSaveOrOpen(blob, fn);
+    } catch (err) {
+      showNotice('Press and hold the schedule image above and tap "Save to Photos".');
+    }
+  }
+
+  function exportImageFile() {
+    try {
+      if (!lastPages.length) lastPages = renderSchedulePages();
+      var combined = mergePagesToSingleCanvas(lastPages);
+      var fn = (S.store ? S.store.replace(/[^\w\u0600-\u06FF\- ]/g, "").trim().replace(/\s+/g, "-") + "-" : "") +
+        "Weekly_Schedule_" + S.week + ".jpg";
+
+      combined.toBlob(function(blob) {
+        if (!blob) {
+          showNotice('Press and hold the schedule image above and tap "Save to Photos".');
+          return;
+        }
+        var file = new File([blob], fn, { type: "image/jpeg" });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({ files: [file], title: "Weekly Work Schedule" }).catch(function(err) {
+            if (err && err.name !== "AbortError") {
+              fallbackSaveOrOpen(blob, fn);
+            }
+          });
+          return;
+        }
+        fallbackSaveOrOpen(blob, fn);
+      }, "image/jpeg", 0.95);
+    } catch (err) {
+      showNotice('Press and hold the schedule image above and tap "Save to Photos".');
+    }
+  }
+
+  $("bsave").onclick = openReportPreview;
+  $("bshare").onclick = function() {
+    openReportPreview();
+    exportPdfFile(true);
+  };
+  $("rclose").onclick = function() {
+    $("rmodal").classList.remove("on");
+  };
+  $("dl-pdf").onclick = function() {
+    exportPdfFile(false);
+  };
+  $("dl-img").onclick = exportImageFile;
+  $("dl-share").onclick = function() {
+    exportPdfFile(true);
+  };
+
+  // =========================================================================
+  // BACKUP EXPORT / IMPORT & PRINT HANDLERS
+  // =========================================================================
+  $("bexp").onclick = function() {
+    var b = $("bexp");
+    try {
+      var jsonStr = JSON.stringify(S, null, 2);
+      var blob = new Blob([jsonStr], { type: "application/json" });
+      var fn = "Schedule_Backup_" + S.week + ".json";
+      var file = new File([blob], fn, { type: "application/json" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: fn }).catch(function() {});
+      } else {
+        fallbackSaveOrOpen(blob, fn);
+      }
+      $("bt").value = jsonStr;
+      $("bkp").style.display = "block";
+      flash(b, "Exported");
+    } catch (e) {
+      flash(b, "Could not export");
+    }
+  };
+
+  function applyBackup(t, btn) {
+    try {
+      var x = JSON.parse(t);
+      if (!sane(x)) throw new Error("Invalid");
+      S = x;
+      norm(S);
+      save();
+      syncAll();
+      flash(btn, "Imported");
+    } catch (e) {
+      flash(btn, "Invalid backup");
+    }
+  }
+
+  $("bimp").onclick = function() {
+    var p = $("bkp");
+    p.style.display = (p.style.display === "none") ? "block" : "none";
+  };
+
+  $("bfile").onclick = function() {
+    $("fimp").click();
+  };
+
+  $("fimp").onchange = function(e) {
+    var f = e.target.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function() {
+      e.target.value = "";
+      applyBackup(String(reader.result || ""), $("bfile"));
+    };
+    reader.onerror = function() {
+      e.target.value = "";
+      flash($("bfile"), "Invalid backup");
+    };
+    reader.readAsText(f);
+  };
+
+  $("bcopy").onclick = function() {
+    var t = JSON.stringify(S);
+    var b = $("bcopy");
+    var ta = $("bt");
+    ta.value = t;
+    ta.focus();
+    ta.select();
+    var ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (e) {}
+    flash(b, ok ? "Copied" : "Select all & copy");
+  };
+
+  $("brest").onclick = function() {
+    applyBackup($("bt").value, $("brest"));
+  };
+
+  function printView() {
+    var n = S.workers.length;
+    var k = Math.min(n, 4);
+    var GAP = k >= 4 ? 10 : 12;
+    var BAR = k >= 4 ? 20 : 24;
+    var HD = k >= 4 ? 16 : 20;
+    var rowH = Math.min(44, Math.floor(((630 - (k - 1) * GAP) / k - BAR * 2 - HD) / 7));
+    var fs = Math.min(14, Math.max(9, Math.round(rowH * 0.38)));
+
+    var tbl = function(w, i) {
+      var c = wc(i);
+      return '<table style="width:100%;table-layout:fixed;border-collapse:collapse;margin-bottom:' + GAP + 'pt;font-size:' + fs + 'pt">' +
+        '<colgroup><col style="width:50%"><col style="width:16.7%"><col style="width:16.7%"><col style="width:16.6%"></colgroup>' +
+        '<tr style="height:' + BAR + 'pt"><td colspan="4" style="background:' + c[0] + ';color:#fff;font-weight:bold;font-size:' + (fs + 2) + 'pt">Employee: ' + esc(w.name || "Worker " + (i + 1)) + '</td></tr>' +
+        '<tr style="height:' + HD + 'pt;background:' + c[1] + ';color:' + c[2] + ';font-weight:bold;font-size:' + Math.min(fs, 10) + 'pt"><td>DAY / DATE</td><td>START</td><td>END</td><td>HOURS</td></tr>' +
+        w.days.map(function(d) {
+          return '<tr style="height:' + rowH + 'pt;border-bottom:1px solid #cfd9df"><td style="font-weight:bold;color:' + c[2] + '">' + esc(dayName(d.date) + ", " + shortD(d.date)) + '</td><td>' + (d.off ? "OFF" : esc(t12(d.start))) + '</td><td>' + (d.off ? "OFF" : esc(t12(d.end))) + '</td><td>' + esc(d.off ? "0:00" : fmtHoursVal(d.hours)) + '</td></tr>';
+        }).join("") +
+        '<tr style="height:' + BAR + 'pt;background:' + c[0] + ';color:#fff;font-weight:bold;font-size:' + (fs + 1) + 'pt"><td colspan="3">TOTAL HOURS</td><td>' + total(w) + '</td></tr></table>';
+    };
+
+    var groups = "";
+    for (var a = 0; a < n; a += k) {
+      groups += "<div" + (a + k < n ? ' style="page-break-after:always;break-after:page"' : "") + ">" +
+        S.workers.slice(a, a + k).map(function(w, m) { return tbl(w, a + m); }).join("") + "</div>";
+    }
+
+    $("pv").innerHTML =
+      '<style>#pv td{padding:0 8px}</style>' +
+      '<div style="font-family:Arial,sans-serif;color:#000;background:#fff">' +
+        '<div style="background:#1f3a4d;color:#fff;padding:14px;border-radius:0 0 14px 14px;margin-bottom:12px">' +
+          (S.showName ? '<div style="font-size:22px;font-weight:bold">' + esc(S.store || "Store name") + '</div>' : "") +
+          (S.showAddr ? '<div>' + esc(S.addr || "Store address") + '</div>' : "") +
+          '<div style="font-weight:bold;margin-top:6px">WEEKLY WORK SCHEDULE: ' + esc(longD(S.week)) + " – " + esc(longD(addD(S.week, 6))) + '</div>' +
+        '</div>' +
+        groups +
+      '</div>';
+  }
+
+  $("bprint").onclick = function() {
+    var fired = false;
+    var h = function() { fired = true; };
+    window.addEventListener("beforeprint", h, { once: true });
+    printView();
+    try {
+      window.print();
+    } catch (e) {}
+    setTimeout(function() {
+      window.removeEventListener("beforeprint", h);
+      if (!fired) openReportPreview();
+    }, 600);
+  };
+
+  // Initialize App
+  banner();
+  render();
+})();
 </script>
 </body>
 </html>
+```[cite: 3]
